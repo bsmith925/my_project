@@ -8,7 +8,7 @@
 | **Module** | `Signature` subclass | `class Add(dspy.Signature): ...` |
 | **Run** | `Predict` | `add = dspy.Predict(Add)` |
 
-### 1 – Minimal “Hello DSPy”
+### 1 – Minimal "Hello DSPy"
 ```python
 import dspy
 
@@ -21,7 +21,7 @@ add = dspy.Predict(Add)
 print(add(a=2, b=3).result)  # → 5
 ```
 
-### 2 – Optimising with compile()
+### 2 – Optimising with compile()
 DSPy can search prompt variants or fine‑tune weights:
 
 ```python
@@ -34,7 +34,7 @@ compiled_add = dspy.compile(
 )
 ```
 
-### 3 – RAG or multi‑step reasoning
+### 3 – RAG or multi‑step reasoning
 ```python
 from dspy import Toolkit, RetrievalQA
 
@@ -45,10 +45,26 @@ qa = RetrievalQA(
 print(qa("Explain RAFT consensus in 2 lines."))
 ```
 
-### 4 – Program‑of‑Thought (PoT)
-Compose chains‑of‑thought as *code you own* rather than raw prompts.  
+### 4 – Program‑of‑Thought (PoT)
+Compose chains‑of‑thought as *code you own* rather than raw prompts.
 This gives you version control, testing, and reuse.
 
-### 5 – Where to go next
+### 5 – Setting up DSPy
+To configure DSPy with a language model, use the following pattern:
+
+```python
+import dspy
+
+# Initialize the language model
+lm = dspy.LM(model="model_name", cache=False)
+
+# Configure DSPy to use this language model
+dspy.configure(lm=lm)
+```
+
+Replace `"model_name"` with your desired model (e.g., "gpt-4", "claude-3", etc.).
+Setting `cache=False` ensures fresh responses for each query.
+
+### 6 – Where to go next
 * **docs/** deep‑dive modules & cookbooks in the DSPy repo.
 * Review the README for latest algorithms & LM back‑ends.
